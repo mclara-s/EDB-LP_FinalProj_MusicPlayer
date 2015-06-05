@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QMediaMetaData>
+#include <QMediaPlaylist>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +20,10 @@ public:
     ~MainWindow();
 
 private slots:
+    void setDirectory();
+
+    void setLibrary();
+
     void on_sliderProgress_sliderMoved(int position);
 
     void on_sliderVolume_sliderMoved(int position);
@@ -26,15 +32,25 @@ private slots:
 
     void on_durationChanged(qint64 position);
 
-    void on_playPause_toggled(bool checked);
-
     void setCurrentData();
 
     void on_playPause_clicked();
 
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_shuffle_clicked();
+
+    void on_repeat_clicked();
+
+    void on_listWidget_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;
+    QMediaPlaylist *nowPlaying;
+    QString directory;
 };
 
 #endif // MAINWINDOW_H

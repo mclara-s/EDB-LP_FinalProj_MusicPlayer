@@ -9,6 +9,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     player = new QMediaPlayer(this);
+    nowPlaying = new QMediaPlaylist();
+    player->setPlaylist(nowPlaying);
+
+    setDirectory();
+    setLibrary();
+
+    nowPlaying->setCurrentIndex(0);
+
 
     connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_positionChanged);
     connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_durationChanged);
@@ -18,6 +26,28 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setDirectory(){
+    directory = QFileDialog::getExistingDirectory(this,tr("Select dir for files to import"));
+}
+
+void MainWindow::setLibrary(){
+    if(directory.isEmpty())
+        return;
+    QDir dir(directory);
+    QStringList files = dir.entryList(QStringList() << "*.mp3",QDir::Files);
+    QList<QMediaContent> content;
+    QString f;
+    for(int i = 0; i < files.size(); i++)
+    {
+        f = files.at(i);
+        content.push_back(QUrl::fromLocalFile(dir.path()+"/" + f));
+        QFileInfo fi(f);
+        ui->listWidget->addItem(fi.fileName());
+    }
+    nowPlaying->addMedia(content);
+    ui->listWidget->setCurrentRow(nowPlaying->currentIndex() != -1? nowPlaying->currentIndex():0);
 }
 
 void MainWindow::on_sliderProgress_sliderMoved(int position)
@@ -54,31 +84,18 @@ void MainWindow::on_durationChanged(qint64 position)
     duration = min + ":" + sec;
     ui->labelDuration->setText(duration);
 }
-void MainWindow::on_playPause_toggled(bool checked)
-{
-    //SE TIVER TOCANDO
-    //if (player->state() == 1){
-      //  player->pause();
-    //}
-    //SE NAO TIVER TOCANDO
-    //else{
-       // player->setMedia(QUrl::fromLocalFile("/home/maria/Música/18 Hot Kiss (Juliette & The Licks).mp3"));
-        //player->play();
-        //qDebug() << player->errorString();
-    //}
-}
 
 void MainWindow::setCurrentData(){
-    //qDebug() << "Chamou setCurrentData\n";
+    QPixmap album;
     if (player->state() == 1){
         if (player->isMetaDataAvailable()){
            ui->labelTitle->setText(player->metaData(QMediaMetaData::Title).toString());
            ui->labelAlbum->setText(player->metaData(QMediaMetaData::AlbumTitle).toString());
            ui->labelArtist->setText(player->metaData(QMediaMetaData::AlbumArtist).toString());
-           //QStringList Authors = player->metaData(QMediaMetaData::Author).toStringList();
-           //QString test;
-           //test.setNum(Authors.count());
-           //ui->labelArtist->setText(test);
+//           QVariant v = player->metaData(QMediaMetaData::CoverArtUrlLarge);
+//           album.convertFromImage(
+//          album.convertFromImage(player->metaData(QMediaMetaData::CoverArtImage).value<QImage>());
+//           ui->albumImage->setPixmap(album);
         }
         else
           qDebug() << "Metadata nao disp\n";
@@ -88,14 +105,49 @@ void MainWindow::setCurrentData(){
 
 void MainWindow::on_playPause_clicked()
 {
-    //if (player->state() == 1)
-      //  player->pause();
-    //else if (player->state() == 2)
-      //  player->
-    //else{
-//        if(player->state() == )
-        player->setMedia(QUrl::fromLocalFile("/home/maria/Música/18 Hot Kiss (Juliette & The Licks).mp3"));
+    if (player->state() != 1){
         player->play();
+        ui->playPause->setText("Pause");
         qDebug() << player->errorString();
-    //}
+    }
+
+    else{
+        player->pause();
+        ui->playPause->setText("Play");
+    }
+
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    nowPlaying->next();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    nowPlaying->previous();
+}
+
+void MainWindow::on_shuffle_clicked()
+{
+    if (!nowPlaying->playbackMode() == QMediaPlaylist::Random)
+        nowPlaying->setPlaybackMode(QMediaPlaylist::Random);
+
+    else
+        nowPlaying->setPlaybackMode(QMediaPlaylist::Sequential);
+}
+
+void MainWindow::on_repeat_clicked()
+{
+    /*if (!nowPlaying->playbackMode() == QMediaPlaylist::CurrentItemInLoop)
+        nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+    else
+        nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
+        */
+}
+
+void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
+{
+    nowPlaying->setCurrentIndex(index.row());
+    player->play();
 }

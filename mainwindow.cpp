@@ -100,6 +100,7 @@ void MainWindow::setCurrentData(){
         else
           qDebug() << "Metadata nao disp\n";
     }
+    ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
 
 }
 
@@ -121,11 +122,13 @@ void MainWindow::on_playPause_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     nowPlaying->next();
+    ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
     nowPlaying->previous();
+    ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
 }
 
 void MainWindow::on_shuffle_clicked()

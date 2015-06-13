@@ -10,11 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     player = new QMediaPlayer(this);
     nowPlaying = new QMediaPlaylist();
+    myLib = new MusicLibrary();
     player->setPlaylist(nowPlaying);
+    if (myLib->mediaCount() == 0)
+      createLibrary();
 
-    setDirectory();
     setLibrary();
-
+    //player->setPlaylist(myLib);
     nowPlaying->setCurrentIndex(0);
 
 
@@ -28,25 +30,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setDirectory(){
+void MainWindow::createLibrary(){
     directory = QFileDialog::getExistingDirectory(this,tr("Select dir for files to import"));
+    myLib->setContent(directory);
 }
 
 void MainWindow::setLibrary(){
-    if(directory.isEmpty())
-        return;
-    QDir dir(directory);
-    QStringList files = dir.entryList(QStringList() << "*.mp3",QDir::Files);
-    QList<QMediaContent> content;
-    QString f;
-    for(int i = 0; i < files.size(); i++)
-    {
-        f = files.at(i);
-        content.push_back(QUrl::fromLocalFile(dir.path()+"/" + f));
-        QFileInfo fi(f);
-        ui->listWidget->addItem(fi.fileName());
-    }
-    nowPlaying->addMedia(content);
+    ui->listWidget->addItems(myLib->getMusicsList());
+    nowPlaying->addMedia(myLib->getContentMedia());
     ui->listWidget->setCurrentRow(nowPlaying->currentIndex() != -1? nowPlaying->currentIndex():0);
 }
 

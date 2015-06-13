@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
       createLibrary();
 
     setLibrary();
-    //player->setPlaylist(myLib);
     nowPlaying->setCurrentIndex(0);
 
 
@@ -36,6 +35,9 @@ void MainWindow::createLibrary(){
 }
 
 void MainWindow::setLibrary(){
+    QStringList headers;
+    headers << "Nome do arquivo" << "Musica" << "Artista" << "Album" << "Tempo" << "Genero";
+    ui->allSongsTable->setHorizontalHeaderLabels(headers);
     ui->listWidget->addItems(myLib->getMusicsList());
     nowPlaying->addMedia(myLib->getContentMedia());
     ui->listWidget->setCurrentRow(nowPlaying->currentIndex() != -1? nowPlaying->currentIndex():0);

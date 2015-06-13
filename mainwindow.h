@@ -7,6 +7,8 @@
 #include <QMediaPlaylist>
 #include <QFileDialog>
 #include "musiclibrary.h"
+#include <QStandardItem>
+
 
 namespace Ui {
 class MainWindow;

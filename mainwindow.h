@@ -6,6 +6,9 @@
 #include <QMediaMetaData>
 #include <QMediaPlaylist>
 #include <QFileDialog>
+#include "musiclibrary.h"
+#include <QStandardItem>
+
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +23,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void setDirectory();
+    void createLibrary();
 
     void setLibrary();
 
@@ -51,6 +54,7 @@ private:
     QMediaPlayer *player;
     QMediaPlaylist *nowPlaying;
     QString directory;
+    MusicLibrary *myLib;
 };
 
 #endif // MAINWINDOW_H

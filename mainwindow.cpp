@@ -126,7 +126,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_shuffle_clicked()
 {
-    if (!nowPlaying->playbackMode() == QMediaPlaylist::Random)
+    if (nowPlaying->playbackMode() != QMediaPlaylist::Random)
         nowPlaying->setPlaybackMode(QMediaPlaylist::Random);
 
     else
@@ -135,11 +135,10 @@ void MainWindow::on_shuffle_clicked()
 
 void MainWindow::on_repeat_clicked()
 {
-    /*if (!nowPlaying->playbackMode() == QMediaPlaylist::CurrentItemInLoop)
+    if (nowPlaying->playbackMode() != QMediaPlaylist::CurrentItemInLoop)
         nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
     else
-        nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
-        */
+        nowPlaying->setPlaybackMode(QMediaPlaylist::Sequential);
 }
 
 void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)

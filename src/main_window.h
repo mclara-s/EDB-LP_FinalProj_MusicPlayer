@@ -3,17 +3,15 @@
 
 #include <QMainWindow>
 
-// #include <QFileDialog>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
-// #include <QMediaMetaData>
-
 namespace Ui {
   class MainWindow;
 }
 
 /**
  * @brief Janela principal da aplicação.
+ *
+ * Esta classe atua como um controller para a aplicação, recebendo todos os eventos
+ * dos widgets e repassando para as classes responsáveis por tratar tais eventos.
  */
 class MainWindow : public QMainWindow
 {
@@ -22,29 +20,16 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
-
-private slots:
-  void setLibrary();
-  void setCurrentData();
-
-  void on_sliderProgress_sliderMoved(int position);
-  void on_sliderVolume_sliderMoved(int position);
-  void on_positionChanged(qint64 position);
-  void on_durationChanged(qint64 position);
-  void on_playPause_clicked();
-  void on_pushButton_4_clicked();
-  void on_pushButton_2_clicked();
-  void on_shuffle_clicked();
-  void on_repeat_clicked();
-  void on_listWidget_doubleClicked(const QModelIndex &index);
-
 private:
-  void setUpPlayer();
-
+  void setupMusicsView();
+  void setupAlbunsView();
+  void setupArtistsView();
+private slots:
+  void on_musicsButton_clicked();
+  void on_albunsButton_clicked();
+  void on_artistsButton_clicked();
 private:
   Ui::MainWindow* ui;
-  QMediaPlayer* player;
-  QMediaPlaylist* nowPlaying;
 };
 
-#endif // MAINWINDOW_H
+#endif

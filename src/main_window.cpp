@@ -8,139 +8,59 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
 
-  setUpPlayer();
-
-  nowPlaying->setCurrentIndex(0);
-
-  connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_positionChanged);
-  connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_durationChanged);
-  connect(player, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::setCurrentData);
-}
-
-void MainWindow::setUpPlayer()
-{
-  player = new QMediaPlayer(this);
-  nowPlaying = new QMediaPlaylist();
-  player->setPlaylist(nowPlaying);
+  setupMusicsView();
+  setupAlbunsView();
+  setupArtistsView();
 }
 
 MainWindow::~MainWindow()
 {
   delete ui;
-  delete player;
-  delete nowPlaying;
 }
 
-void MainWindow::setLibrary(){
-    // QStringList headers;
-    // headers << "Nome do arquivo" << "Musica" << "Artista" << "Album" << "Tempo" << "Genero";
-    // ui->allSongsTable->setHorizontalHeaderLabels(headers);
-    // ui->listWidget->addItems(myLib->getMusicsList());
-    // nowPlaying->addMedia(myLib->getContentMedia());
-    // ui->listWidget->setCurrentRow(nowPlaying->currentIndex() != -1? nowPlaying->currentIndex():0);
-}
-
-void MainWindow::on_sliderProgress_sliderMoved(int position)
+void MainWindow::setupMusicsView()
 {
-    // player->setPosition(position);
+  QStringList headers;
+
+  headers << "Musica" << "Artista" << "Album" << "Tempo" << "Genero";
+
+  ui->musicsView->setColumnCount(5);
+  ui->musicsView->setHorizontalHeaderLabels(headers);
 }
 
-void MainWindow::on_sliderVolume_sliderMoved(int position)
+void MainWindow::setupAlbunsView()
 {
-    // player->setVolume(position);
+  QStringList headers;
+
+  headers << "Album" << "Genero" << "Ano" << "Faixas" <<  "Artista";
+
+  ui->albunsView->setColumnCount(5);
+  ui->albunsView->setHorizontalHeaderLabels(headers);
 }
 
-void MainWindow::on_positionChanged(qint64 position)
+void MainWindow::setupArtistsView()
 {
-    // ui->sliderProgress->setValue(position);
-    // int time = position/1000;
-    // QString duration, min, sec;
-    // min.setNum(time/60);
-    // sec.setNum(time%60);
-    // duration = min + ":" + sec;
-    // ui->labelDurationI->setText(duration);
+  QStringList headers;
 
+  headers << "Artista" << "Genero" << "Albuns";
 
+  ui->artistsView->setColumnCount(3);
+  ui->artistsView->setHorizontalHeaderLabels(headers);
 }
 
-void MainWindow::on_durationChanged(qint64 position)
+// Private Slots
+// =============================================================================
+void MainWindow::on_musicsButton_clicked()
 {
-    // int time;
-    // ui->sliderProgress->setMaximum(position);
-    // time = position/1000;
-    // QString duration, min, sec;
-    // min.setNum(time/60);
-    // sec.setNum(time%60);
-    // duration = min + ":" + sec;
-    // ui->labelDuration->setText(duration);
+  ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::setCurrentData(){
-    // QPixmap album;
-    // if (player->state() == 1){
-    //     if (player->isMetaDataAvailable()){
-    //        ui->labelTitle->setText(player->metaData(QMediaMetaData::Title).toString());
-    //        ui->labelAlbum->setText(player->metaData(QMediaMetaData::AlbumTitle).toString());
-    //        ui->labelArtist->setText(player->metaData(QMediaMetaData::AlbumArtist).toString());
-//           QVariant v = player->metaData(QMediaMetaData::CoverArtUrlLarge);
-//           album.convertFromImage(
-//          album.convertFromImage(player->metaData(QMediaMetaData::CoverArtImage).value<QImage>());
-//           ui->albumImage->setPixmap(album);
-    //     }
-    //     else
-    //       qDebug() << "Metadata nao disp\n";
-    // }
-    // ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
-
-}
-
-void MainWindow::on_playPause_clicked()
+void MainWindow::on_albunsButton_clicked()
 {
-    // if (player->state() != 1){
-    //     player->play();
-    //     ui->playPause->setText("Pause");
-    //     qDebug() << player->errorString();
-    // }
-
-    // else{
-    //     player->pause();
-    //     ui->playPause->setText("Play");
-    // }
-
+  ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_artistsButton_clicked()
 {
-    // nowPlaying->next();
-    // ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
-}
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    // nowPlaying->previous();
-    // ui->listWidget->setCurrentRow(nowPlaying->currentIndex());
-}
-
-void MainWindow::on_shuffle_clicked()
-{
-    // if (!(nowPlaying->playbackMode() == QMediaPlaylist::Random))
-    //     nowPlaying->setPlaybackMode(QMediaPlaylist::Random);
-
-    // else
-    //     nowPlaying->setPlaybackMode(QMediaPlaylist::Sequential);
-}
-
-void MainWindow::on_repeat_clicked()
-{
-    /*if (!nowPlaying->playbackMode() == QMediaPlaylist::CurrentItemInLoop)
-        nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
-    else
-        nowPlaying->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
-        */
-}
-
-void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
-{
-    // nowPlaying->setCurrentIndex(index.row());
-    // player->play();
+  ui->stackedWidget->setCurrentIndex(2);
 }

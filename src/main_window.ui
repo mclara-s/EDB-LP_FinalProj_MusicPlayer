@@ -27,7 +27,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="musicButton">
          <property name="text">
           <string>Music</string>
          </property>
@@ -43,7 +43,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="albunsButton">
          <property name="text">
           <string>Albuns</string>
          </property>
@@ -53,9 +53,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="artistsButton">
          <property name="text">
-          <string>Artist</string>
+          <string>Artists</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
@@ -63,17 +63,17 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="addPlaylistButton">
          <property name="text">
           <string>+ Playlist</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="searchBox"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_11">
+        <widget class="QPushButton" name="settingsButton">
          <property name="text">
           <string>Settings</string>
          </property>
@@ -86,7 +86,7 @@
        <property name="currentIndex">
         <number>0</number>
        </property>
-       <widget class="QWidget" name="page_5">
+       <widget class="QWidget" name="musicsPage">
         <widget class="QTableView" name="musicsView">
          <property name="geometry">
           <rect>
@@ -104,12 +104,12 @@
          </attribute>
         </widget>
        </widget>
-       <widget class="QWidget" name="page_6">
+       <widget class="QWidget" name="albunsPage">
         <widget class="QLabel" name="label">
          <property name="geometry">
           <rect>
-           <x>160</x>
-           <y>290</y>
+           <x>0</x>
+           <y>0</y>
            <width>59</width>
            <height>16</height>
           </rect>
@@ -119,68 +119,83 @@
          </property>
         </widget>
        </widget>
+       <widget class="QWidget" name="artistsPage">
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>59</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Artists</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QPushButton" name="pushButton_6">
+        <widget class="QPushButton" name="prevButton">
          <property name="text">
           <string>Prev</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="playButton">
          <property name="text">
           <string>Play</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_9">
+        <widget class="QPushButton" name="nextButton">
          <property name="text">
           <string>Next</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_7">
+        <widget class="QPushButton" name="pauseButton">
          <property name="text">
           <string>Pause</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="startLabel">
          <property name="text">
           <string>0:00</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="horizontalSlider">
+        <widget class="QSlider" name="musicProgressBar">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="endLabel">
          <property name="text">
           <string>1:59</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_8">
+        <widget class="QPushButton" name="shuffleButton">
          <property name="text">
           <string>Shuffle</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_10">
+        <widget class="QPushButton" name="repeatButton">
          <property name="text">
           <string>Repeat</string>
          </property>

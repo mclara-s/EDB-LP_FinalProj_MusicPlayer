@@ -6,6 +6,8 @@
 #include <QMediaContent>
 
 #include "duration.h"
+#include <taglib/tstring.h>
+#include <taglib/fileref.h>
 
 /**
  * @brief Uma música.

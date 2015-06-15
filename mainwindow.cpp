@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setLibrary();
     nowPlaying->setCurrentIndex(0);
 
-
     connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_positionChanged);
     connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_durationChanged);
     connect(player, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::setCurrentData);
@@ -36,8 +35,10 @@ void MainWindow::createLibrary(){
 
 void MainWindow::setLibrary(){
     QStringList headers;
-    headers << "Nome do arquivo" << "Musica" << "Artista" << "Album" << "Tempo" << "Genero";
+    headers << "Musica" << "Artista" << "Album" << "Tempo" << "Genero";
+    ui->allSongsTable->setColumnCount(5);
     ui->allSongsTable->setHorizontalHeaderLabels(headers);
+    //ui->tableView->setModel(model);
     ui->listWidget->addItems(myLib->getMusicsList());
     nowPlaying->addMedia(myLib->getContentMedia());
     ui->listWidget->setCurrentRow(nowPlaying->currentIndex() != -1? nowPlaying->currentIndex():0);

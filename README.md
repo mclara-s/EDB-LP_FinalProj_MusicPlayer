@@ -6,21 +6,25 @@ Player de músicas desenvolvido como Projeto Final da disciplina Estruturas de D
 Desenvolvedoras 
 ---------------
 
-	- Dayane Pabla -> [Github](https://github.com/dayanepabla)
+- [Dayane Pabla](https://github.com/dayanepabla)
 
-	- Maria Clara -> [Github](https://github.com/mclara-s)
+- [Maria Clara](https://github.com/mclara-s)
 
 Professores Orientadores
 ------------------------
 
-	- André Maurício Cunha Campos
-	- Selan Rodrigues dos Santos
+- André Maurício Cunha Campos
+- Selan Rodrigues dos Santos
 
 Dependências
 ------------
 
-	- QT 5.4
+- QT 5.4
 
-	- TagLib
-		-> Instalação:
-			[INSTALL](https://github.com/taglib/taglib/blob/master/INSTALL)
+- TagLib: 
+[Instalação](https://github.com/taglib/taglib/blob/master/INSTALL)
+
+Intalação e Execução
+---------------------
+
+- Importe o projeto no QT Creator e em seguida execute-o.

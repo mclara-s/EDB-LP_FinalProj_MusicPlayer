@@ -182,13 +182,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pauseButton">
-         <property name="text">
-          <string>Pause</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="startLabel">
          <property name="text">
           <string>0:00</string>
@@ -214,12 +207,18 @@
          <property name="text">
           <string>Shuffle</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="repeatButton">
          <property name="text">
           <string>Repeat</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

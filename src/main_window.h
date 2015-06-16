@@ -33,6 +33,9 @@ private slots:
   void on_stopButton_clicked();
   void on_prevButton_clicked();
   void on_nextButton_clicked();
+  void on_returnPressed();
+  void on_positionChanged(qint64);
+  void on_durationChanged(qint64);
 private:
   Ui::MainWindow* ui;
   QMediaPlayer* player;

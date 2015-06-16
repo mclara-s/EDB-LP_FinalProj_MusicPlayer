@@ -35,6 +35,24 @@ const Music& Playlist::music(int index)
   return musics->at(index);
 }
 
+QList<Music>& Playlist::search(QString& term)
+{
+  QList<Music>::const_iterator itr;
+  auto results = new QList<Music>();
+
+  for (itr = musics->begin(); itr != musics->end(); ++itr)
+  {
+    auto music = *itr;
+
+    if (term == music.getName())
+    {
+      results->push_back(music);
+    }
+  }
+
+  return *results;
+}
+
 Playlist& Playlist::fromFile(QUrl url)
 {
   auto playlist = new Playlist(url.toString());

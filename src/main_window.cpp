@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
   setupMusicsView();
   setupAlbunsView();
   setupArtistsView();
+
+  connect(ui->searchBox, &QLineEdit::returnPressed, this, &MainWindow::on_returnPressed);
+  connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_positionChanged);
+  connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_durationChanged);
 }
 
 MainWindow::~MainWindow()
@@ -44,7 +48,6 @@ void MainWindow::setupMusicsView()
     ui->musicsView->setItem(i, 3, new QTableWidgetItem(music.getDuration().toString()));
     ui->musicsView->setItem(i, 4, new QTableWidgetItem(music.getGenre()));
   }
-
 }
 
 void MainWindow::setupAlbunsView()
@@ -91,12 +94,15 @@ void MainWindow::on_playButton_clicked()
   switch (player->state())
   {
     case QMediaPlayer::PlayingState:
+      ui->playButton->setText("Play");
       player->pause();
       break;
     case QMediaPlayer::PausedState:
+      ui->playButton->setText("Pause");
       player->play();
       break;
     default:
+      ui->playButton->setText("Pause");
       player->setPlaylist(app->library);
       ui->musicsView->setCurrentCell(0, 0);
       app->library->setCurrentIndex(0);
@@ -123,4 +129,33 @@ void MainWindow::on_nextButton_clicked()
 
   app->library->next();
   ui->musicsView->setCurrentCell(app->library->currentIndex(), 0);
+}
+
+void MainWindow::on_returnPressed()
+{
+  qDebug() << "initializing search...";
+
+  auto app = (Application*) qApp;
+  auto term = ui->searchBox->text();
+
+  app->library->search(term);
+
+  qDebug() << term;
+  qDebug() << "finalizing search...";
+}
+
+void MainWindow::on_positionChanged(qint64 position)
+{
+  auto duration = new Duration(position / 1000);
+
+  ui->musicProgressBar->setValue(position);
+  ui->startLabel->setText(duration->toString());
+}
+
+void MainWindow::on_durationChanged(qint64 position)
+{
+  auto duration = new Duration(position / 1000);
+
+  ui->musicProgressBar->setMaximum(position);
+  ui->endLabel->setText(duration->toString());
 }

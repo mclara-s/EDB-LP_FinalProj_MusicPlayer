@@ -68,6 +68,14 @@ public:
   const Music& music(int);
 
   /**
+   * Busca uma música na playlist pelo nome.
+   *
+   * @param term Nome da música.
+   * @returns Lista com as músicas encontradas.
+   */
+  QList<Music>& search(QString&);
+
+  /**
    * Cria um objeto Playlist a partir de um arquivo em disco.
    *
    * @param url QUrl para o arquivo da playlist.

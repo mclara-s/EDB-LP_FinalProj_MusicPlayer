@@ -14,10 +14,9 @@ public:
     : QApplication(argc, argv)
   {
     auto home = QDir::home();
-    home.setPath("Music");
 
     playlist_library = new PlaylistLibrary();
-    library = MusicLibrary::fromDirectory("/home/dayanepabla/Music");
+    library = MusicLibrary::fromDirectory(home.filePath("Music"));
   }
 
   /**

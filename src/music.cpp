@@ -18,3 +18,10 @@ Duration& Music::getDuration()
 {
   return *duration;
 }
+
+Music& Music::fromUrl(QUrl url)
+{
+  auto music = new Music(url.fileName(), 0, url);
+
+  return *music;
+}

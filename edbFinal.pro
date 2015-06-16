@@ -14,17 +14,19 @@ TEMPLATE = app
 
 CONFIG += c++11
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    musiclibrary.cpp \
-    music.cpp \
-    playlist.cpp \
-    duration.cpp
+SOURCES += src/main.cpp\
+    src/duration.cpp \
+    src/music.cpp \
+    src/playlist.cpp \
+    src/main_window.cpp \
+    src/playlist_library.cpp \
 
-HEADERS  += mainwindow.h \
-    musiclibrary.h \
-    music.h \
-    playlist.h \
-    duration.h
+HEADERS  += src/duration.h \
+    src/music.h \
+    src/playlist.h \
+    src/main_window.h \
+    src/application.h \
+    src/music_library.h \
+    src/playlist_library.h \
 
-FORMS    += mainwindow.ui
+FORMS    += src/main_window.ui

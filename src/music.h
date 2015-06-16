@@ -6,8 +6,6 @@
 #include <QMediaContent>
 
 #include "duration.h"
-#include <taglib/tstring.h>
-#include <taglib/fileref.h>
 
 /**
  * @brief Uma música.
@@ -41,6 +39,14 @@ public:
    * @returns Duration da música.
    */
   Duration& getDuration();
+
+  /**
+   * Inicializa uma Musica a partir de um QUrl.
+   *
+   * @param QUrl para o arquivo da música.
+   * @returns Um objeto Music.
+   */
+  static Music& fromUrl(QUrl);
 private:
   QString name;
   Duration* duration;

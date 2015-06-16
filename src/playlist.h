@@ -39,11 +39,33 @@ public:
   ~Playlist();
 
   /**
+   * Retorna a quantidade de músicas na playlist.
+   *
+   * @returns Quantidade de músicas na playlist.
+   */
+  int count();
+
+  /**
    * Retorna o nome da playlist.
    *
    * @returns O nome da playlist.
    */
   QString getName();
+
+  /**
+   * Adiciona uma músico ao playlist.
+   *
+   * @param music A música para adicionar.
+   */
+  void addMusic(Music&);
+
+  /**
+   * Retorna a música localizada no indíce indicado.
+   *
+   * @param index Índice da música procurada.
+   * @returns A música na posção indicada.
+   */
+  const Music& music(int);
 
   /**
    * Cria um objeto Playlist a partir de um arquivo em disco.

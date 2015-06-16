@@ -14,6 +14,10 @@ TEMPLATE = app
 
 CONFIG += c++11
 
+TAGLIBDIR = /usr/local
+INCLUDEPATH += /usr/local/include/taglib
+LIBS += -L/usr/local/lib -ltag
+
 SOURCES += src/main.cpp\
     src/duration.cpp \
     src/music.cpp \
@@ -28,5 +32,6 @@ HEADERS  += src/duration.h \
     src/application.h \
     src/music_library.h \
     src/playlist_library.h \
+    taglib/fileref.h
 
 FORMS    += src/main_window.ui

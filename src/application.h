@@ -17,7 +17,7 @@ public:
     home.setPath("Music");
 
     playlist_library = new PlaylistLibrary();
-    library = MusicLibrary::fromDirectory("/home/dayanepabla/Music");
+    library = MusicLibrary::fromDirectory("/Users/diegotoral/Music");
   }
 
   /**

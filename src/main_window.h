@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtMultimedia>
 
 namespace Ui {
   class MainWindow;
@@ -28,8 +29,13 @@ private slots:
   void on_musicsButton_clicked();
   void on_albunsButton_clicked();
   void on_artistsButton_clicked();
+  void on_playButton_clicked();
+  void on_stopButton_clicked();
+  void on_prevButton_clicked();
+  void on_nextButton_clicked();
 private:
   Ui::MainWindow* ui;
+  QMediaPlayer* player;
 };
 
 #endif

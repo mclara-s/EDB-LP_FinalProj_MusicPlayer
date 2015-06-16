@@ -44,7 +44,7 @@ public:
       auto path = dir.filePath(*itr);
       auto url = QUrl::fromLocalFile(path);
 
-      library->addMedia(Music::fromUrl(url));
+      library->addMusic(Music::fromUrl(url));
     }
 
     return library;

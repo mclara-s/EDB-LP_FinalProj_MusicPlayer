@@ -21,6 +21,20 @@ public:
   Duration(int s);
 
   /**
+   * Retorna o número de segundos dessa Duration.
+   *
+   * @returns Número de segundos.
+   */
+  int getSeconds();
+
+  /**
+   * Retorna o número de minutos dessa Duration.
+   *
+   * @returns Número de minutos.
+   */
+  int getMinutes();
+
+  /**
    * Retorna o tempo total em segundos.
    *
    * returns O tempo total, em segundos.

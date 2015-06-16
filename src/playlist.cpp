@@ -14,9 +14,25 @@ Playlist::~Playlist()
     delete musics;
 }
 
+int Playlist::count()
+{
+  return musics->size();
+}
+
 QString Playlist::getName()
 {
   return name;
+}
+
+void Playlist::addMusic(Music& music)
+{
+  musics->push_back(music);
+  addMedia(music.getContent());
+}
+
+const Music& Playlist::music(int index)
+{
+  return musics->at(index);
 }
 
 Playlist& Playlist::fromFile(QUrl url)

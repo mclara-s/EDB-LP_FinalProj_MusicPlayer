@@ -3,6 +3,16 @@
 Duration::Duration(int s)
   : seconds(s) {}
 
+int Duration::getSeconds()
+{
+  return (seconds % 60);
+}
+
+int Duration::getMinutes()
+{
+  return ((seconds - getSeconds()) / 60);
+}
+
 int Duration::getTotalSeconds()
 {
   return seconds;
@@ -10,8 +20,5 @@ int Duration::getTotalSeconds()
 
 QString Duration::toString()
 {
-  int mm = seconds / 60;
-  int ss = (seconds % 60) * 60;
-
-  return QString(mm) + ":" + QString(ss);
+  return QString::number(getMinutes()) + ":" + QString::number(getSeconds());
 }

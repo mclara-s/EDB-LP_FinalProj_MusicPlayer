@@ -115,6 +115,26 @@ void MainWindow::on_stopButton_clicked()
   player->stop();
 }
 
+void MainWindow::on_shuffleButton_clicked()
+{
+  auto app = (Application*) qApp;
+
+  if (app->library->playbackMode() != QMediaPlaylist::Random)
+    app->library->setPlaybackMode(QMediaPlaylist::Random);
+  else
+    app->library->setPlaybackMode(QMediaPlaylist::Sequential);
+}
+
+void MainWindow::on_repeatButton_clicked()
+{
+  auto app = (Application*) qApp;
+
+  if (app->library->playbackMode() != QMediaPlaylist::CurrentItemInLoop)
+    app->library->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+  else
+    app->library->setPlaybackMode(QMediaPlaylist::Sequential);
+}
+
 void MainWindow::on_prevButton_clicked()
 {
   auto app = (Application*) qApp;
